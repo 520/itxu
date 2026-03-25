@@ -1,1 +1,204 @@
-hello world
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Premium Website for Sale</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg-1: #0b0b0c;
+      --bg-2: #15120d;
+      --gold-1: #f6e7b2;
+      --gold-2: #d4af37;
+      --gold-3: #8f6a16;
+      --text-1: #f8f4e8;
+      --text-2: rgba(248, 244, 232, 0.72);
+      --line: rgba(212, 175, 55, 0.22);
+      --panel: rgba(255, 255, 255, 0.03);
+      --shadow: rgba(0, 0, 0, 0.55);
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      background:
+        radial-gradient(circle at top left, rgba(212, 175, 55, 0.08), transparent 30%),
+        radial-gradient(circle at bottom right, rgba(246, 231, 178, 0.05), transparent 28%),
+        linear-gradient(135deg, var(--bg-1), var(--bg-2));
+      color: var(--text-1);
+      overflow: hidden;
+    }
+
+    .bg-glow,
+    .bg-glow::before,
+    .bg-glow::after {
+      position: absolute;
+      inset: 0;
+      content: "";
+      pointer-events: none;
+    }
+
+    .bg-glow::before {
+      background: radial-gradient(circle at 20% 25%, rgba(212, 175, 55, 0.12), transparent 22%);
+      filter: blur(40px);
+      animation: drift 10s ease-in-out infinite;
+    }
+
+    .bg-glow::after {
+      background: radial-gradient(circle at 78% 72%, rgba(246, 231, 178, 0.08), transparent 22%);
+      filter: blur(46px);
+      animation: drift 12s ease-in-out infinite reverse;
+    }
+
+    .card {
+      position: relative;
+      width: min(520px, 90vw);
+      padding: 52px 42px;
+      border-radius: 28px;
+      text-align: center;
+      background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+      border: 1px solid var(--line);
+      box-shadow:
+        0 24px 80px var(--shadow),
+        inset 0 1px 0 rgba(255,255,255,0.06),
+        inset 0 0 0 1px rgba(212, 175, 55, 0.04);
+      backdrop-filter: blur(14px);
+      animation: floatCard 6s ease-in-out infinite;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      padding: 1px;
+      background: linear-gradient(135deg, rgba(246,231,178,0.45), rgba(212,175,55,0.15), rgba(246,231,178,0.08));
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      font-size: 0.75rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: rgba(246, 231, 178, 0.72);
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-size: clamp(2.1rem, 5vw, 3.5rem);
+      line-height: 1.04;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      margin-bottom: 10px;
+    }
+
+    .sub {
+      font-size: 0.95rem;
+      color: var(--text-2);
+      margin-bottom: 34px;
+      letter-spacing: 0.08em;
+    }
+
+    .price-label {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      color: rgba(246, 231, 178, 0.62);
+      margin-bottom: 8px;
+    }
+
+    .price {
+      font-size: clamp(2.4rem, 6vw, 4rem);
+      font-weight: 800;
+      line-height: 1;
+      margin-bottom: 28px;
+      background: linear-gradient(180deg, #fff7db 0%, #f6e7b2 34%, #d4af37 78%, #8f6a16 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: shimmer 4.5s ease-in-out infinite;
+      background-size: 180% 180%;
+    }
+
+    .contact {
+      display: inline-block;
+      min-width: 100%;
+      padding: 15px 18px;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.035);
+      border: 1px solid rgba(212, 175, 55, 0.18);
+      color: var(--text-1);
+      font-size: 1rem;
+      letter-spacing: 0.02em;
+      transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .contact:hover {
+      transform: translateY(-2px);
+      border-color: rgba(246, 231, 178, 0.38);
+      box-shadow: 0 12px 28px rgba(212, 175, 55, 0.08);
+    }
+
+    .note {
+      margin-top: 14px;
+      font-size: 0.78rem;
+      color: rgba(248, 244, 232, 0.42);
+      letter-spacing: 0.03em;
+    }
+
+    @keyframes floatCard {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
+
+    @keyframes drift {
+      0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+      50% { transform: translate3d(10px, -8px, 0) scale(1.04); }
+    }
+
+    @keyframes shimmer {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
+    @media (max-width: 560px) {
+      .card {
+        padding: 38px 24px;
+        border-radius: 22px;
+      }
+
+      .sub {
+        margin-bottom: 28px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-glow"></div>
+
+  <div class="card">
+    <div class="eyebrow">Exclusive Digital Asset</div>
+    <h1>Itxu.com Website<br>For Sale</h1>
+    <div class="sub">网站出售</div>
+
+    <div class="price-label">Asking Price</div>
+    <div class="price">£1200</div>
+
+    <div class="contact">Contact: itxu@outlook.com</div>
+    <div class="contact" style="margin-top:10px;">Call: 🇬🇧 +44 7501 938246</div>
+    <div class="note">Contact our via email or call · 通过邮箱电话联系</div>
+  </div>
+</body>
+</html>
